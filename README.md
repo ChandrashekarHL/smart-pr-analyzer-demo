@@ -18,3 +18,7 @@ itself. See [SCENARIOS.md](SCENARIOS.md).
 ```bash
 python -m pytest            # Python tests
 ```
+
+## Contributing
+
+Run the tests before opening a pull request, and keep prices in integer cents.
