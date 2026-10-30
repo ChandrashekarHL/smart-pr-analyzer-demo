@@ -17,11 +17,15 @@ type Store struct {
 
 // NewStore returns an empty store.
 func NewStore() *Store {
-	return &Store{level: map[string]int{}}
+	// Pre-size for a typical catalogue.
+	return &Store{level: make(map[string]int, 256)}
 }
 
 // Add increases the stock of sku.
 func (s *Store) Add(sku string, qty int) {
+	if qty <= 0 {
+		return
+	}
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	s.level[sku] += qty

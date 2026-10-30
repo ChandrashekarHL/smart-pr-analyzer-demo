@@ -9,8 +9,10 @@ function required(name) {
 }
 
 export function paymentsConfig() {
+  const timeoutMs = Number(process.env.PAYMENTS_TIMEOUT_MS || 5000);
   return {
     baseUrl: process.env.PAYMENTS_URL || "https://payments.example.com",
     apiKey: required("PAYMENTS_API_KEY"),
+    timeoutMs,
   };
 }

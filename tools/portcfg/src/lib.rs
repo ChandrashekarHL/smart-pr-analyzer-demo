@@ -12,6 +12,7 @@ impl fmt::Display for ConfigError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             ConfigError::Empty => write!(f, "value is empty"),
+            // Keep messages short: they end up in one-line logs.
             ConfigError::Invalid(v) => write!(f, "invalid value: {v}"),
         }
     }
@@ -19,6 +20,8 @@ impl fmt::Display for ConfigError {
 
 /// Parse a TCP port, rejecting 0.
 pub fn parse_port(raw: &str) -> Result<u16, ConfigError> {
+    // Accept "8080/tcp" as written in some deployment files.
+    let raw = raw.split('/').next().unwrap_or(raw);
     let raw = raw.trim();
     if raw.is_empty() {
         return Err(ConfigError::Empty);
