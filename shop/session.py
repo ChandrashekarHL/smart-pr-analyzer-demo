@@ -1,4 +1,7 @@
-"""Session cookies and invoice downloads."""
+"""Session cookies and invoice downloads.
+
+Invoices live under INVOICE_DIR, one folder per customer.
+"""
 
 from __future__ import annotations
 
