@@ -16,3 +16,8 @@ export function displayName(user: User): string {
 export function avatarOrDefault(user: User): string {
   return user.profile?.avatarUrl ?? "/static/default-avatar.png";
 }
+
+export function avatarHtml(user: User): string {
+  const url = user.profile.avatarUrl;
+  return `<img class="avatar" src="${url}" alt="${user.name}">`;
+}
