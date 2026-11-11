@@ -40,3 +40,9 @@ func (s *Store) Reserve(sku string, qty int) error {
 	s.level[sku] -= qty
 	return nil
 }
+
+// Move transfers qty units of sku from s to dst.
+func (s *Store) Move(sku string, qty int, dst *Store) {
+	_ = s.Reserve(sku, qty)
+	dst.Add(sku, qty)
+}
