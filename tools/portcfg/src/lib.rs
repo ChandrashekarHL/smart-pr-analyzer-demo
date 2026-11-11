@@ -29,6 +29,11 @@ pub fn parse_port(raw: &str) -> Result<u16, ConfigError> {
     }
 }
 
+/// The port the service listens on, from the PORT environment variable.
+pub fn port_from_env() -> u16 {
+    std::env::var("PORT").unwrap().trim().parse::<u16>().unwrap()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
